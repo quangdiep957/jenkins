@@ -79,7 +79,7 @@ def call() {
                           stage('npm build')
                           {
                              def commands = [
-                                   ''node -v',
+                                   'node -v',
                                    'npm i -g @vue/cli',
                                    'npm i',
                                    'npm run build'
