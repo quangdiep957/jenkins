@@ -10,25 +10,29 @@ def call() {
       label 'linux'
     }
 
-    parameters {
-      extendedChoice(
-        defaultValue: 'frontend,backend',
-        multiSelectDelimiter: STRING_DELIMITER,
-        name: 'APP',
-        type: 'PT_CHECKBOX',
-        value: 'frontend,backend',
-        description: 'Chọn app cần build',
-        groovyScript: [
-          script: [
-            classpath: [],
-            sandbox: true,
-            script: '''
-              return ['frontend', 'backend']
-            '''
-          ]
-        ]
-      )
-    }
+   parameters{
+            extendedChoice( 
+                name: 'APP', 
+                value: 'frontend,backend', 
+                multiSelectDelimiter: STRING_DELIMITER, 
+                quoteValue: false,
+                saveJSONParameterToFile: false,
+                type: 'PT_CHECKBOX', 
+                description: 'Chon app build?', 
+            )
+            string(
+                defaultValue: 'master',
+                name: 'FRONTEND_GIT_BRANCH',
+                trim: true,
+                description: 'Build Front End nhánh nào?',
+            )
+            string(
+                defaultValue: 'master',
+                name: 'BACKEND_GIT_BRANCH',
+                trim: true,
+                description: 'Build Back End nhánh nào?',
+            )
+        }
 
     stages {
       // Get source code mới nhất
