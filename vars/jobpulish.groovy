@@ -15,12 +15,18 @@ def call() {
         defaultValue: 'frontend,backend',
         multiSelectDelimiter: STRING_DELIMITER,
         name: 'APP',
-        quoteValue: false,
-        saveJSONParameterToFile: false,
         type: 'PT_CHECKBOX',
         value: 'frontend,backend',
-        visibleItemCount: 50,
-        description: 'Chọn app cần build'
+        description: 'Chọn app cần build',
+        groovyScript: [
+          script: [
+            classpath: [],
+            sandbox: true,
+            script: '''
+              return ['frontend', 'backend']
+            '''
+          ]
+        ]
       )
     }
 
@@ -56,4 +62,3 @@ def call() {
     }
   }
 }
-
