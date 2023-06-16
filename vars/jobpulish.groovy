@@ -74,6 +74,7 @@ def call()
                       }
                     }
                   }
+                  parallel sourceTask
                 }
               }
             }
