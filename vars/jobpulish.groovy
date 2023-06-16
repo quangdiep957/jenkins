@@ -81,7 +81,7 @@ def call() {
                              def commands = [
                                    ''node -v',
                                    'npm i -g @vue/cli',
-                                   // 'npm i',
+                                   'npm i',
                                    'npm run build'
                                    ]
                                    commands.each{i ->
