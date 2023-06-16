@@ -79,7 +79,10 @@ def call() {
                         if (app == 'frontend') {
                           stage('npm build')
                           {
-                             def commands = [
+                            // kiểm tra xem có nodejs chưa
+                            nodejs("NodeJS16")
+                            {
+                                def commands = [
                                    'node -v',
                                    'npm i -g @vue/cli',
                                    'npm i',
@@ -88,6 +91,7 @@ def call() {
                                    commands.each{i ->
                                    runCmd(i)
                                   }
+                            }
                           }
                         } else if (app == 'backend') {
                           checkout([$class: 'GitSCM', branches: [[name: params.BACKEND_GIT_BRANCH ?: 'main']], userRemoteConfigs: [[url: URL_BACKEND]]])
