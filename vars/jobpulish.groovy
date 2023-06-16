@@ -1,7 +1,7 @@
 def call() {
   // Khai báo các hàm dùng chung
   STRING_DELIMITER = ','
-  WORKSPACE = '.'
+  WORKSPACE = 'sourcecode'
   URL_FRONTEND = 'https://github.com/quangdiep957/BookingRoomVue.git'
   URL_BACKEND = 'https://github.com/quangdiep957/BookingRoomAPI.git'
 
