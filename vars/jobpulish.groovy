@@ -1,69 +1,59 @@
-def call()
-{
+def call() {
   // Khai báo các hàm dùng chung
   STRING_DELIMITER = ','
-  WORKSPACCE = 'hoem/quangdiep'
+  WORKSPACE = 'home/quangdiep'
   URL_FRONTEND = 'https://github.com/quangdiep957/BookingRoomVue.git'
   URL_BACKEND = 'https://github.com/quangdiep957/BookingRoomAPI.git'
-    pipline{
-        agent{
-          label 'linux'
-        }
-         parameters
-        {
-          extendedChoise(
-            defaultValue:'frontend, backend',
-            multiSelectDelimiter: STRING_DELIMITER,
-            name : 'APP',
-            quoteValue : false,
-            saveJsonParameterToFile: false,
-            type : 'PT_CHECKBOX',
-            value: 'frontend, backend',
-            visibleItemCount: 50 ,
-            description: 'Chọn app cần build '
-          )
-        }
-        stages
-        {
-            // get source code mới nhất về     
-            stage('get latest source code')
-            {
-              step
-              {
-                script
-                {
-                  sourceTask = [:]
-                  // Lấy ra app nào cần build
-                  appBuild = params.APP.split(STRING_DELIMITER)
-                  // get source của app đó 
-                  appbuild.each
-                  {
-                    app->
-                    sourceTask[app] = 
-                    {
-                      dir(WORKSPACCE)
-                      {
-                       
-                            script
-                            {
-                                 checkout([$class: 'GitSCM',
-                                  branches: [
-                                      [name: 'main']
-                                  ],
-                                  userRemoteConfigs: [
-                                      [url: URL_FRONTEND]
-                                  ]
-                                ])
-                            }
-                        
-                        
-                      }
+
+  pipeline {
+    agent {
+      label 'linux'
+    }
+
+    parameters {
+      extendedChoice(
+        defaultValue: 'frontend,backend',
+        multiSelectDelimiter: STRING_DELIMITER,
+        name: 'APP',
+        quoteValue: false,
+        saveJSONParameterToFile: false,
+        type: 'PT_CHECKBOX',
+        value: 'frontend,backend',
+        visibleItemCount: 50,
+        description: 'Chọn app cần build'
+      )
+    }
+
+    stages {
+      // Get source code mới nhất
+      stage('Get latest source code') {
+        steps {
+          script {
+            def sourceTasks = [:]
+            // Lấy ra các app cần build
+            def appBuild = params.APP.split(STRING_DELIMITER)
+
+            // Xây dựng các tác vụ checkout cho từng app
+            appBuild.each { app ->
+              sourceTasks[app] = {
+                dir(WORKSPACE) {
+                  script {
+                    if (app == 'frontend') {
+                      checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: URL_FRONTEND]]])
+                    } else if (app == 'backend') {
+                      checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: URL_BACKEND]]])
                     }
                   }
-                  parallel sourceTask
                 }
               }
             }
+
+            // Thực hiện các tác vụ checkout song song
+            parallel sourceTasks
+          }
         }
+      }
     }
+  }
 }
+
