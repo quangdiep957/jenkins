@@ -61,7 +61,8 @@ def call() {
             parallel sourceTasks
           }
         }
-        stage('publish các app')
+      }
+              stage('publish các app')
         {
           steps
           {
@@ -98,7 +99,6 @@ def call() {
             }
           }
         }
-      }
     }
   }
 }
