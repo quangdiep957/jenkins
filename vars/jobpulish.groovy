@@ -42,8 +42,6 @@ def call() {
             def sourceTasks = [:]
             // Lấy ra các app cần build
             def appBuild = params.APP ? params.APP.split(STRING_DELIMITER): []
-            echo appBuild
-
             // Xây dựng các tác vụ checkout cho từng app
             appBuild.each { app ->
               sourceTasks[app] = {
