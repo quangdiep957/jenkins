@@ -43,8 +43,7 @@ def call()
                     {
                       dir(WORKSPACCE)
                       {
-                        if (appBuild.contains('frontend'))
-                        {
+                       
                             script
                             {
                                  checkout([$class: 'GitSCM',
@@ -56,20 +55,7 @@ def call()
                                   ]
                                 ])
                             }
-                        }
-                        else{
-                            script
-                            {
-                                 checkout([$class: 'GitSCM',
-                                  branches: [
-                                      [name: 'main']
-                                  ],
-                                  userRemoteConfigs: [
-                                      [url: URL_BACKEND]
-                                  ]
-                                ])
-                            }
-                        }
+                        
                         
                       }
                     }
