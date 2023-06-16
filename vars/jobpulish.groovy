@@ -41,7 +41,7 @@ def call() {
           script {
             def sourceTasks = [:]
             // Lấy ra các app cần build
-            def appBuild = params.APP ?: ['backend']
+            def appBuild = params.APP ? params.APP.split(STRING_DELIMITER): []
             echo appBuild
 
             // Xây dựng các tác vụ checkout cho từng app
