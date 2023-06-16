@@ -13,6 +13,7 @@ def call() {
     parameters {
       extendedChoice( 
         name: 'APP', 
+        defaultValue : 'frontend,backend', 
         value: 'frontend,backend', 
         multiSelectDelimiter: STRING_DELIMITER, 
         quoteValue: false,
