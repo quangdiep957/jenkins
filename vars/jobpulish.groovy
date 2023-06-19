@@ -82,9 +82,9 @@ def call() {
                           {
                             // kiểm tra xem có nodejs chưa
                             script {
-                            def nodeVersion = sh(returnStdout: true, script: 'node -v').trim()
-                            echo "Node.js version: ${nodeVersion}"
-                            if (nodeVersion == "") {
+                          //  def nodeVersion = sh(returnStdout: true, script: 'node -v').trim()
+                          // echo "Node.js version: ${nodeVersion}"
+                          //  if (nodeVersion == "") {
                               // Node.js chưa được cài đặt, tiến hành cài đặt
                                // Đường dẫn đến thư mục cài đặt Node.js trong thư mục của Jenkins
                                 def nodeInstallDir = "${env.WORKSPACE}/node"
@@ -106,7 +106,7 @@ def call() {
                                 sh "export NODE_VERSION=16.13.1"
                                 sh 'export PATH="${NVM_DIR}/versions/node/v${NODE_VERSION}/bin:${PATH}"'
                                 
-                            }
+                        //    }
                           }
                                 def commands = [
                                    'node -v',
