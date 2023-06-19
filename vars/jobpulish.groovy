@@ -82,8 +82,8 @@ def call() {
                           {
                             
                                 def commands = [
-                                    'curl -sL https://deb.nodesource.com/setup_16.x | bash -
-                                      apt-get install -y nodejs=16.13.1-1nodesource1',
+                                    'curl -sL https://deb.nodesource.com/setup_16.x ',
+                                     'apt-get install -y nodejs=16.13.1-1nodesource1',
                                    'node -v',
                                    'npm i -g @vue/cli',
                                    'npm i',
