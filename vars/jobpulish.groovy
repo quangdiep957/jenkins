@@ -83,10 +83,10 @@ def call() {
                             // kiểm tra xem có nodejs chưa
                             script {
                                 sh '''
-      curl -sL https://deb.nodesource.com/setup_16.x | bash -
-      apt-get install -y nodejs=16.13.1-1nodesource1
-    '''
-  }
+                            curl -sL https://deb.nodesource.com/setup_16.x | bash -
+                            apt-get install -y nodejs=16.13.1-1nodesource1
+                          '''
+                        
                           }
                                 def commands = [
                                    'node -v',
