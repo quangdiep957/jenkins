@@ -93,7 +93,7 @@ def call() {
                                 sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash'
                                 
                                 // Load nvm trong session hiện tại
-                                sh 'source ~/.nvm/nvm.sh'
+                                sh 'home/quangdiep ~/.nvm/nvm.sh'
                                 
                                 // Cài đặt phiên bản Node.js mong muốn
                                 sh "nvm install 16.13.1"
