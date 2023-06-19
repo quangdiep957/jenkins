@@ -49,9 +49,9 @@ def call() {
                 dir(WORKSPACE) {
                   script {
                     if (app == 'frontend') {
-                      checkout([$class: 'GitSCM', branches: [[name: params.FRONTEND_GIT_BRANCH ?: 'main']], userRemoteConfigs: [[url: URL_FRONTEND]]])
+                      checkout([$class: 'GitSCM', branches: [[name: params.FRONTEND_GIT_BRANCH ? params.FRONTEND_GIT_BRANCH : 'main']], userRemoteConfigs: [[url: URL_FRONTEND]]])
                     } else if (app == 'backend') {
-                      checkout([$class: 'GitSCM', branches: [[name: params.BACKEND_GIT_BRANCH ?: 'main']], userRemoteConfigs: [[url: URL_BACKEND]]])
+                      checkout([$class: 'GitSCM', branches: [[name: params.BACKEND_GIT_BRANCH ? params.FRONTEND_GIT_BRANCH : 'main']], userRemoteConfigs: [[url: URL_BACKEND]]])
                     }
                   }
                 }
