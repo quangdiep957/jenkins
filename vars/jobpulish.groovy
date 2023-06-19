@@ -82,33 +82,11 @@ def call() {
                           {
                             // kiểm tra xem có nodejs chưa
                             script {
-                          //  def nodeVersion = sh(returnStdout: true, script: 'node -v').trim()
-                          // echo "Node.js version: ${nodeVersion}"
-                          //  if (nodeVersion == "") {
-                              // Node.js chưa được cài đặt, tiến hành cài đặt
-                               // Đường dẫn đến thư mục cài đặt Node.js trong thư mục của Jenkins
-                                def nodeInstallDir = "${env.WORKSPACE}/node"
-                                
-                                // Cài đặt nvm
                                 sh '''
-                                  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-                                  export NVM_DIR="$HOME/.nvm"
-                                  [ -s "$NVM_DIR/nvm.sh" ] && sh 'eval "$(cat $NVM_DIR/nvm.sh)"'
-  # Load nvm
-                                '''
-                                
-                                // Cài đặt phiên bản Node.js mong muốn
-                                sh "nvm install 16.13.1"
-                                
-                                // Đặt Node.js làm phiên bản mặc định
-                                sh "nvm alias default 16.13.1"
-                                
-                                // Đặt biến môi trường PATH để sử dụng Node.js và npm
-                                sh "export NVM_DIR=${nodeInstallDir}/.nvm"
-                                sh "export NODE_VERSION=16.13.1"
-                                sh 'export PATH="${NVM_DIR}/versions/node/v${NODE_VERSION}/bin:${PATH}"'
-                                
-                        //    }
+      curl -sL https://deb.nodesource.com/setup_16.x | bash -
+      apt-get install -y nodejs=16.13.1-1nodesource1
+    '''
+  }
                           }
                                 def commands = [
                                    'node -v',
