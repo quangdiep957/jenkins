@@ -83,7 +83,7 @@ def call() {
                             // kiểm tra xem có nodejs chưa
                             script {
                             def nodeVersion = sh(returnStdout: true, script: 'node -v').trim()
-                            
+                            echo "Node.js version: ${nodeVersion}"
                             if (nodeVersion == "") {
                               // Node.js chưa được cài đặt, tiến hành cài đặt
                                // Đường dẫn đến thư mục cài đặt Node.js trong thư mục của Jenkins
